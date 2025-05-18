@@ -3,7 +3,7 @@ class MovableObject {
     x = 120;
     y = 300;
     img;
-    height = 150;
+    height = 120;
     width = 100;
 
     //loadImage('img/test.png');
