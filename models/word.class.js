@@ -1,41 +1,54 @@
 class World {
-
+    //Spielfigur
     char = new Character();
+    //Gegner
     enemies = [
         new Skeleton(),
         new Skeleton(),
         new Skeleton(),
     ];
+    //Boden-Elemente
     tiles = [
         new Tile(),
         new Tile(),
         new Tile()
     ];
+    //Hintergrund
+    backgroundObjects = [
+        new BackgroundObject(`img/main-world/PNG/Background/Bright/Background.png`, 0, 0)
+    ];
     canvas;
     ctx;
 
     constructor(canvas) {
-        this.ctx = canvas.getContext('2d');
+        this.ctx = canvas.getContext('2d'); // Zeichenfläche
         this.canvas = canvas;
-        this.draw();
+        this.draw(); // World start
     }
 
-    // draw wird immer wieder aufgerufen
+    // World wird erstellt
     draw() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Bild löschen → kein Flackern
+        // Objekte werden hinzugefügt
+        this.addObjectsToMap(this.backgroundObjects);
+        this.addObjectsToMap(this.tiles);
+        this.addObjectsToMap(this.enemies);
+        this.addToMap(this.char);
+
+        // Schleife mit x fps
         self = this;
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-        this.ctx.drawImage(this.char.img, this.char.x, this.char.y, this.char.height, this.char.width) // alle variablen z.b aus world mit this öffnen 
-        this.enemies.forEach((enemy) => {
-            this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
-        });
-
-        this.tiles.forEach((tile) => {
-            this.ctx.drawImage(tile.img, tile.x, tile.y, tile.width, tile.height);
-        });
-
         requestAnimationFrame(() => {
             self.draw();
         });
+    }
+    // Alle Objekte zeichen
+    addObjectsToMap(obj) {
+        obj.forEach(o => {
+            this.addToMap(o);
+        })
+    }
+    //Objekt zeichnen
+    addToMap(mObject) {
+        this.ctx.drawImage(mObject.img, mObject.x, mObject.y, mObject.width, mObject.height);
     }
 }
