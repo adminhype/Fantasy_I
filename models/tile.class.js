@@ -1,13 +1,12 @@
 class Tile extends MovableObject {
     height = 50;
-    width = 50;
-    y = 250;
-    x = 200;
+    width = 720;
+    y = 400;
+    x = 0;
 
 
 
     constructor() {
-        super().loadImage('img/main-world/PNG/tiles/tile32.png');
-
+        super().loadImage('img/main-world/PNG/Background/Bright/down.png');
     }
 }

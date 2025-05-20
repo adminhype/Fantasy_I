@@ -1,4 +1,6 @@
 class World {
+    //#region attributes
+
     //Spielfigur
     char = new Character();
     //Gegner
@@ -19,21 +21,26 @@ class World {
     ];
     canvas;
     ctx;
+    //#endregion
 
+    //#region konstruktor
     constructor(canvas) {
         this.ctx = canvas.getContext('2d'); // Zeichenfläche
         this.canvas = canvas;
         this.draw(); // World start
     }
+    //#endregion
 
+    //#region methode
     // World wird erstellt
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Bild löschen → kein Flackern
         // Objekte werden hinzugefügt
         this.addObjectsToMap(this.backgroundObjects);
-        this.addObjectsToMap(this.tiles);
-        this.addObjectsToMap(this.enemies);
         this.addToMap(this.char);
+        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.tiles);
+
 
         // Schleife mit x fps
         self = this;
@@ -41,6 +48,7 @@ class World {
             self.draw();
         });
     }
+
     // Alle Objekte zeichen
     addObjectsToMap(obj) {
         obj.forEach(o => {
@@ -51,4 +59,5 @@ class World {
     addToMap(mObject) {
         this.ctx.drawImage(mObject.img, mObject.x, mObject.y, mObject.width, mObject.height);
     }
+    //#endregion
 }

@@ -1,7 +1,7 @@
 // Vorlage 
 class MovableObject {
-    x = 120;
-    y = 300;
+    x = 100;
+    y = 344;
     img;
     height = 120;
     width = 100;
